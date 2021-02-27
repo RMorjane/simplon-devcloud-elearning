@@ -1,4 +1,6 @@
 import psycopg2
+import logging    
+from logging.handlers import RotatingFileHandler
 
 class MyElearning:
 
@@ -6,6 +8,7 @@ class MyElearning:
         self.connection = None
         self.list_videos = []
         self.list_vcategories = []
+        self.logger = None
 
     def connect(self):
         try:
@@ -15,9 +18,9 @@ class MyElearning:
                 password = "test",
                 port = "5432"
             )
-            print("Connexion réussie : ",self.connection)
+            self.logger.info("Connexion réussie : " + self.connection)
         except (Exception, psycopg2.Error) as error:
-            print("Impossible de se connecter au serveur postgres : ",error)
+            self.logger.error("Impossible de se connecter au serveur postgres : " + error)
 
     def read_videos(self):
         try:
@@ -32,8 +35,9 @@ class MyElearning:
                         "vcategory_id": video[3]
                     })
                 my_cursor.close()
+                self.logger.info("Reading videos successfully!!!")
         except (Exception, psycopg2.Error) as error:
-            print("Erreur dans la requête de selection des videos : ",error)
+            self.logger.error("Erreur dans la requête de selection des videos : "+error)
 
     def add_video(self,video_name,video_link,vcategory_id):
         try:
@@ -43,15 +47,16 @@ class MyElearning:
                 my_cursor.execute(sql_add_video %(video_name,video_link,vcategory_id))
                 self.connection.commit()
                 my_cursor.close()
-                video_id = len(list_videos)+1
+                video_id = len(self.list_videos)+1
                 self.list_videos.append({
                     "video_id": video_id,
                     "video_name": video_name,
                     "video_link": video_link,
                     "vcategory_id": vcategory_id
                 })
+                self.logger.info("Adding video successfully!!!")
         except (Exception, psycopg2.Error) as error:
-            print("Erreur dans la requête d'insertion de la video : ",error)
+            self.logger.error("Erreur dans la requête d'insertion de la video : "+error)
 
     def get_video_id(self,video_link):
         with self.connection.cursor() as my_cursor:
@@ -101,8 +106,9 @@ class MyElearning:
                         "vcategory_id": video[3]
                     })
                 my_cursor.close()
+                self.logger.info("Successfull : Videos was founded")
         except (Exception, psycopg2.Error) as error:
-            print("Erreur dans la requête de selection des videos : ",error)
+            self.logger.error("Erreur dans la requête de selection des videos : "+error)
 
     def read_vcategories(self):
         try:
@@ -115,8 +121,9 @@ class MyElearning:
                         "vcategory_name": vcategory[1]
                     })
                 my_cursor.close()
+            self.logger.info("Readding video's categories successfully!!!")
         except (Exception, psycopg2.Error) as error:
-            print("Erreur dans la requête de selection des catégories de videos : ",error)
+            self.logger.error("Erreur dans la requête de selection des catégories de videos : "+error)
 
     def add_vcategory(self,vcategory_name):
         vcategory_id = self.get_vcategory_id(vcategory_name)
@@ -132,8 +139,9 @@ class MyElearning:
                         "vcategory_id": vcategory_id,
                         "vcategory_name": vcategory_name
                     })
+                self.logger.info("Adding video category successfully!!!")
             except (Exception, psycopg2.Error) as error:
-                print("Erreur dans la requête d'insertion de la catégorie de videos : ",error)
+                self.logger.error("Erreur dans la requête d'insertion de la catégorie de videos : "+error)
         return vcategory_id
 
     def get_vcategory_id(self,vcategory_name):
@@ -143,3 +151,13 @@ class MyElearning:
             vcategory_id = my_cursor.fetchone()
             my_cursor.close()
             return vcategory_id
+
+    def set_logger(self):
+        logger = logging.getLogger()
+        logger.setLevel(logging.DEBUG)        
+        formatter = logging.Formatter('%(asctime)s :: %(levelname)s :: %(message)s')
+        file_handler = RotatingFileHandler('log.txt', 'a', 1000000, 1)
+        file_handler.setLevel(logging.DEBUG)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)        
+        self.logger = logger
