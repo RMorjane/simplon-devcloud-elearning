@@ -61,3 +61,6 @@ class TestMyElearning(unittest.TestCase):
         elearning.connect()
         vcategory_id = elearning.get_vcategory_id('cloud')
         self.assertTrue(vcategory_id)
+
+if __name__ == '__main__':
+    unittest.main()
