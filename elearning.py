@@ -20,7 +20,7 @@ class MyElearning:
             )
             self.logger.info("Connexion réussie : " + self.connection)
         except (Exception, psycopg2.Error) as error:
-            self.logger.error("Impossible de se connecter au serveur postgres : " + error)
+            self.logger.error("Impossible de se connecter au serveur postgres : " + str(error))
 
     def read_videos(self):
         try:
@@ -37,7 +37,7 @@ class MyElearning:
                 my_cursor.close()
                 self.logger.info("Reading videos successfully!!!")
         except (Exception, psycopg2.Error) as error:
-            self.logger.error("Erreur dans la requête de selection des videos : "+error)
+            self.logger.error("Erreur dans la requête de selection des videos : "+str(error))
 
     def add_video(self,video_name,video_link,vcategory_id):
         try:
@@ -56,7 +56,7 @@ class MyElearning:
                 })
                 self.logger.info("Adding video successfully!!!")
         except (Exception, psycopg2.Error) as error:
-            self.logger.error("Erreur dans la requête d'insertion de la video : "+error)
+            self.logger.error("Erreur dans la requête d'insertion de la video : "+str(error))
 
     def get_video_id(self,video_link):
         with self.connection.cursor() as my_cursor:
@@ -108,7 +108,7 @@ class MyElearning:
                 my_cursor.close()
                 self.logger.info("Successfull : Videos was founded")
         except (Exception, psycopg2.Error) as error:
-            self.logger.error("Erreur dans la requête de selection des videos : "+error)
+            self.logger.error("Erreur dans la requête de selection des videos : "+str(error))
 
     def read_vcategories(self):
         try:
@@ -123,7 +123,7 @@ class MyElearning:
                 my_cursor.close()
             self.logger.info("Readding video's categories successfully!!!")
         except (Exception, psycopg2.Error) as error:
-            self.logger.error("Erreur dans la requête de selection des catégories de videos : "+error)
+            self.logger.error("Erreur dans la requête de selection des catégories de videos : "+str(error))
 
     def add_vcategory(self,vcategory_name):
         vcategory_id = self.get_vcategory_id(vcategory_name)
@@ -141,7 +141,7 @@ class MyElearning:
                     })
                 self.logger.info("Adding video category successfully!!!")
             except (Exception, psycopg2.Error) as error:
-                self.logger.error("Erreur dans la requête d'insertion de la catégorie de videos : "+error)
+                self.logger.error("Erreur dans la requête d'insertion de la catégorie de videos : "+str(error))
         return vcategory_id
 
     def get_vcategory_id(self,vcategory_name):
