@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+    <link href="/static/css/st.css')" rel="stylesheet">
+    <title>{% block title %} Elearning {% endblock %}</title>
+  </head>
+  <body>
+    <div class="contenedor-principal-elearning">
+      <div class="header-elearning">
+        <div class="logo">
+          <a href="#"><img src="http://192.169.231.95/~incremtest/logo2blanco.png"></a>
+        </div>
+        <div class="log-out">
+         <a id="USERLOG">
+          <span class="lgost fa-stack fa-2x">
+            <i class="clo fa fa-circle fa-stack-2x" ></i>
+            <i class="lgou fa fa-power-off fa-stack-1x fa-inverse"></i>
+            <!--<i class="lgou fa fa-sign-out fa-stack-1x fa-inverse"></i>-->
+             </span>
+         </a>
+        </div>
+        <div class="nombre-usuario">
+            ¡Hola &nbsp;<span class="BNN">[Nombre de Usuario</span>]! 
+        </div>
+        <div class="menu-elearning">
+          <div class="dropdown">
+            <button class="menudrop btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              Menú
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a id="menuits" role="menuitem" tabindex="-1" href="#">Notificaciones</a></li>
+              <li role="presentation"><a id="menuits" role="menuitem" tabindex="-1" href="#">Empleados</a></li>
+              <li role="presentation"><a id="menuits" role="menuitem" tabindex="-1" href="#">Cursos</a></li>
+              <li role="presentation"><a id="menuits" role="menuitem" tabindex="-1" href="#">Estadísticas</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a id="menuits" role="menuitem" tabindex="-1" href="#">Mi Perfil</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="contenido-principal ">
+        <div class="contenedor-zona row">
+          <div class="wh1 col-xs-12 col-sm-6 col-md-8">
+            <div class="headwh1">
+              <div class="tit-untf">Últimas Notificaciones</div>
+              <div class="tit-vntf">
+                <a id="verNotificaciones" class="go-notificaciones">ver NOTIFICACIONES</a>
+            </div>
+            </div>
+            <div class="notif">
+                <!--Carga notificaciones-->
+                
+                {% for item in video %}
+                <div class="XiNotificacion">
+                  <div class="XiNotificacionContenido">
+                       <span class="XiNotificacionContenidoC">
+                        {{ item['video_name'] }}
+                       </span>
+                   </div>
+                  <div class="XiNotificacionTitulo">
+                      <span class="XiNotificacionSistema">Sistema</span>
+                      <span class="XiNotificacionFecha"> 04/05/2015 </span>
+                      <span class="XiNotificacionHora"> 15:30 hrs. </span>
+                      <span class="XiNotificacionIr">ir a: <a id="XiNI" href="{{ item['video_link'] }}" class="XiNI">voir la vidéo</a></span>
+                 </div>
+                 
+              </div>
+              {% endfor %}
+              
+              
+            </div>
+          </div>
+          <div class="wh2 col-xs-6 col-md-4">
+            <div class="headwh2">
+              <div class="tit-miPerfil">Mi perfil</div>
+              <div class="tit-vstat">
+                <a id="verESTADISTICAS" class="go-miperfilstats">ver ESTADÍSTICAS</a>
+            </div>
+          </div>
+            <div class="zona-puntos">
+              <div class="pts-e">
+                <span class="pts-ac">PUNTOS ACUMULADOS</span>
+                <span class="PPX">394,000,000</span>
+              </div>
+              <div class="ID-e">
+                <span class="Ide-e">ID de empleado:</span>
+                <span class="num-ide">00958473</span>
+              </div>
+            </div>
+            <div class="iPerfilForm">
+               <form id="datos-emp">
+                 <input class="in-data" type="text" placeholder="Nombre de Empleado" id="nombre" value="Javier Rodríguez López" disabled>
+                 <button id="edit-idata" type="button" class="e-idata btn-primary edit-button" data-style="zoom-out">
+                    <span class="edit-label">Editar</span>
+                 </button>
+                 <input class="in-data" type="text" placeholder="Dirección" id="direccion" value="Campo de golf #2938 Col. Centro, C.P. 05986" disabled>
+                 <input class="in-data" type="text" placeholder="Telefono de contacto" id="telefono" value="5576568938" disabled>
+                 <input class="in-data" type="text" placeholder="Mail de contacto" id="email" value="javier.rl@increm.com" disabled>
+                 <input class="in-data" type="password" placeholder="Nueva Contraseña" id="contraseña" disabled>
+                 <input class="in-data" type="password" placeholder="Repetir Contraseña" id="recontraseña" disabled>
+              </form>
+            </div>
+            <button id="iPFS" type="button" class="iPFS btn-primary ladda-button" data-style="zoom-out" disabled="disabled">
+                <span class="ladda-label">Actualizar Información</span>
+              </button>
+          </div>
+          <div class="info-curso-actual ">
+            <div class="curso-ac">Mi curso actual</div>
+            <div class="tit-vtc">
+              <a>ver CURSOS</a>
+            </div>
+          </div>
+          <div class="cont-down col-xs-9">
+            <div class="wh3 ">
+              <h1 class="label-porcent">
+                  <div class="banner-right label label-info label-arrow label-arrow-left">95%</div>
+              </h1>
+              <div class="info-curso-act">
+                <div class="tit-curso-act">
+                  Lorem ipsum dolor sit amet
+                </div>
+                <div class="desc-curso-act">
+                  <div class="desc-curso">
+                  Proin efficitur aliquam nisi vitae bibendum. Nam a nibh a ex ultrices hendrerit. Phasellus nisi velit, vulputate at hendrerit vel, hendrerit et nunc. In hendrerit ligula eget gravida finibus. Donec aliquet neque molestie eleifend porta. Nam efficitur a risus eu viverra. Nunc porttitor mi id neque auctor convallis. In efficitur quam sed consectetur varius.  Donec porttitor sem in lectus malesuada suscipit. Cras velit ipsum, vulputate a varius ut, pulvinar a massa.  Donec porttitor sem in lectus malesuada suscipit. Cras velit ipsum, vulputate a varius ut, pulvinar a massa. t, pulvinar a massa.  Donec porttitor sem in lectus malesuada suscipit. Cras velit ipsum, vulputate a varius ut, pulvinar a massa.</div>
+                  <div class="space"></div>
+                </div>
+                <div class="tiempo-fecha-curso">
+                  <div class="cursoFootTime faa-parent animated-hover">
+                    <i class="clc fa fa-clock-o fa-2x faa-spin faa-slow"></i>
+                    <div class="time-curso">06:25 min.</div>
+                  </div>
+                  <div class="cursoFootLimit faa-parent animated-hover">
+                    <i class="cale fa fa-calendar faa-shake"></i>
+                    <div class="fecha-curso">Completar antes de: 05/mayo/2015</div>
+                  </div>
+                </div>
+              </div>
+                <button id="Xgo" type="button" class="btir-c btn-primary go-C1" data-style="zoom-out">
+                  <span>Ir al curso</span>
+                </button>
+            </div>
+            <div class="imag-curso">
+              <img src="http://192.169.231.95/~incremtest/tienda/img/p/es-default-cart_default.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-elearning">
+         <div class="social-footer">
+             <div class="texto-social">SIGUENOS</div>
+               <div class="fb-tw">
+                      <a href="#">
+                      <span class="fa-stack fa-1x faa-parent animated-hover">  
+                        <i class="ft fa fa-circle fa-stack-2x"></i>
+                        <i class="fbl fa fa-facebook fa-stack-1x faa-vertical"></i>
+                      </span>
+                    </a>
+                    <a href="#">
+                      <span class="fa-stack fa-1x faa-parent animated-hover">  
+                        <i class="ft fa fa-circle fa-stack-2x"></i>
+                        <i class="twl fa fa-twitter fa-stack-1x faa-ring faa-slow"></i>
+                      </span>
+                    </a>
+               </div>
+           </div>
+        <div class="texto-footer">
+                  ©2014 Grupo Increm, Todos los derechos reservados. Cristian Baños Millan.
+        </div>
+    
+      </div>
+    </div>
+  </body>
+</html>

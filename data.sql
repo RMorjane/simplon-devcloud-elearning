@@ -1,10 +1,8 @@
-use elearning;
-
-insert into vcategory(vcategory_name)
+insert into elearning.vcategory(vcategory_name)
 values('cloud'),('technology'),('development');
 
-insert into video(video_name,video_link,vcategory_id)
-values('Le cloud computing expliqué en 7 minutes','https://www.youtube.com/channel/UC5cs06DgLFeyLIF_II7lWCQ',1),
+insert into elearning.video(video_name,video_link,vcategory_id)
+values('Le cloud computing expliqué en 7 minutes','https://www.youtube.com//embed/RwbIMBSr8o8',1),
 ('XAVKI','https://www.youtube.com/channel/UCs_AZuYXi6NA9tkdbhjItHQ',1),
 ('Top 10 Technologies to Learn in 2021 | Trending Technologies in 2021 | Edureka','https://www.youtube.com/c/edurekaIN',2),
 ('i bought a DDoS attack on the DARK WEB (dont do this)','https://www.youtube.com/c/NetworkChuck',2),

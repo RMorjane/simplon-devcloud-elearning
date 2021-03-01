@@ -1,0 +1,229 @@
+<div id="test">page vidéo</div>
+<h1 id="test">{{video['video_name']}}</h1>
+<div id="test">page vidéo</div>
+
+  <div class="player-play-list">
+    <div class="container">  
+        <div class="play-list">
+            <div class="options">
+                <h4 class="name-play-list">Autre vidéos intéressantes</h4>
+                
+            </div> 
+  
+            <ul>
+                {% for item in video_all %}
+                <li href="{{ url_for('video_page',video_id = item['video_id'])}}">
+                   <div class="count"></div>
+                   
+                    <iframe width="40%" height="100%" src="{{item['video_link']}}" ></iframe>
+                    <div class="desc">
+                        <h4 class="video-title">{{ item['video_name']}}</h4>
+                        <p class="video-desc">{{ item['video_name']}}  </p>
+                    </div>
+                    <div class="time"></div>
+                </li>
+                {% endfor %}           
+            </ul>
+        </div>
+        
+        <div class="player">
+            <div class="overlay-play">
+            <iframe width="100%" height="100%" src="{{video['video_link']}}" ></iframe>
+            </div> 
+            
+        </div>
+    </div>
+   
+</div>
+
+<style>/** Start Global **/
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+/** garder **/
+#test{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+h4{
+    align-items: center;
+  text-align: center;
+}
+
+body {
+    margin: 0;
+    font-family: Verdana, Tahoma, Arial;
+    background-size: 100% 200%;
+} 
+/** End Global **/
+body.full-screen {
+    overflow: hidden;
+}
+
+/** garder **/
+.player-play-list .container {
+    background-color: #393939;
+    box-shadow: 0 0 25px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    border-radius: 4px;
+    
+    -moz-user-select: none;
+    user-select: none;
+    display: flex;
+    
+    min-width: 768px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/** garder **/
+/*.player-play-list .container > *,*/
+.player-play-list .play-list ul li > * {
+    float: left;
+}
+/** garder **/
+.player-play-list .play-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    order: 2;
+}
+/** garder **/
+.player-play-list .play-list .options {
+    position: relative;
+    flex: 1;
+    max-height: 60px;
+    color: #EEE;
+    background-color: #111;
+}
+
+/** garder **/
+.player-play-list .play-list ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    -webkit-overflow: auto;
+    overflow: auto;
+    flex: 1; 
+}
+/** IMPORTANT**/
+.player-play-list .play-list ul li {
+    height: 80px;
+    margin-bottom: 3px;
+    background-color: #000;
+    color: #EEE;
+    cursor: pointer;
+    border-radius: 3px;
+    position: relative;
+}
+/** garder **/
+.player-play-list .play-list ul li:last-child {
+    margin-bottom: 0;
+}
+/** garder **/
+.player-play-list .play-list ul li .video-list {
+    width: 135px;
+    height: 100%;
+    border: 1px solid #CCC;
+    background-color: rgba(0, 0, 0, 0.9);
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+/** garder **/
+.player-play-list .play-list ul li .video-list:hover {
+    -webkit-transform: scale(2, 2);
+    transform: scale(2, 2);
+    position: relative;
+    top: 0;
+    left: 67px;
+    z-index: 99;
+    border-color: #111;
+}
+
+
+/** garder **/
+.player-play-list .play-list ul li .desc {
+    width: calc(100% - 175px);
+    padding: 8px;
+    word-break: break-word;
+    height: 100%;
+    line-height: 1.2;
+    position: relative;
+    overflow: hidden;
+}
+/** garder **/
+.player-play-list .play-list ul li .desc h4 {
+    margin: 2px 0 5px;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+/** garder **/
+.player-play-list .play-list ul li .desc p {
+    margin: 0;
+    font-size: 13px;
+    color: #AAA;
+}
+/** garder **/
+.player-play-list .play-list ul li .count {
+    text-align: center;
+    line-height: 80px;
+    min-width: 40px;
+}
+/** garder **/
+
+/** garder **/
+.player {
+    background-color: #0f0e0e;
+    position: relative;
+    -webkit-box-shadow:0 0 20px rgba(0, 0, 0, 0.6);
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    color: #FFF;
+    order: 1;
+    margin-bottom: 20px;
+    height: 415px;
+}
+
+
+
+/* Media Query In All Screen 
+*********************************************/
+
+/* Start Gerater Than Screen 1200 (Desktop) */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 1200px) {
+    .player-play-list .container {
+        margin-top: 30px;
+        width: 1170px;
+        min-width: auto;
+        flex-direction: row;
+        height: 421px;
+    }
+    .player-play-list .play-list {
+        order: 1;
+        margin-right: 10px;
+        flex: 1;
+    }
+    .player-play-list .player {
+        order: 2;
+        flex: 1.7;
+    }
+    .player {
+        height: 100%;
+    }
+}
+/* End Gerater Than Screen 1200 (Desktop) */
+
+</style>
