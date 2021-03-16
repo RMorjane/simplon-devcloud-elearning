@@ -65,7 +65,7 @@ class MyElearning:
     def read_videos(self):
         try:
             with self.connection.cursor() as my_cursor:
-                my_cursor.execute("SELECT * FROM elearning.video")
+                my_cursor.execute("SELECT * FROM video")
                 self.list_videos = []
                 for video in my_cursor.fetchall():
                     self.list_videos.append({
@@ -82,7 +82,7 @@ class MyElearning:
     def add_video(self,video_name,video_link,vcategory_id):
         try:
             with self.connection.cursor() as my_cursor:
-                sql_add_video = """INSERT INTO elearning.video(video_name,video_link,vcategory_id)
+                sql_add_video = """INSERT INTO video(video_name,video_link,vcategory_id)
                 values('%s','%s',%s)"""
                 my_cursor.execute(sql_add_video %(video_name,video_link,vcategory_id))
                 self.connection.commit()
@@ -100,7 +100,7 @@ class MyElearning:
 
     def get_video_id(self,video_link):
         with self.connection.cursor() as my_cursor:
-            sql_video_id = "SELECT video_id FROM elearning.video WHERE video_link='%s'"
+            sql_video_id = "SELECT video_id FROM video WHERE video_link='%s'"
             my_cursor.execute(sql_video_id %(video_link))
             video_id = my_cursor.fetchone()
             my_cursor.close()
@@ -115,7 +115,7 @@ class MyElearning:
             list_values.append(value)
         try:
             with self.connection.cursor() as my_cursor:
-                sql_find_videos = "SELECT * FROM elearning.video"
+                sql_find_videos = "SELECT * FROM video"
                 for i in range(len(list_keys)):
                     if i==0:
                         sql_find_videos += " WHERE "
@@ -153,7 +153,7 @@ class MyElearning:
     def read_vcategories(self):
         try:
             with self.connection.cursor() as my_cursor:
-                my_cursor.execute("SELECT * FROM elearning.vcategory")
+                my_cursor.execute("SELECT * FROM vcategory")
                 self.list_vcategories = []
                 for vcategory in my_cursor.fetchall():
                     self.list_vcategories.append({
@@ -170,7 +170,7 @@ class MyElearning:
         if not vcategory_id:
             try:
                 with self.connection.cursor() as my_cursor:
-                    sql_add_vcategory = "INSERT INTO elearning.vcategory(vcategory_name) values('%s')"
+                    sql_add_vcategory = "INSERT INTO vcategory(vcategory_name) values('%s')"
                     my_cursor.execute(sql_add_vcategory %(vcategory_name))
                     self.connection.commit()
                     my_cursor.close()
@@ -186,7 +186,7 @@ class MyElearning:
 
     def get_vcategory_id(self,vcategory_name):
         with self.connection.cursor() as my_cursor:
-            sql_vcategory_id = "SELECT vcategory_id FROM elearning.vcategory WHERE vcategory_name='%s'"
+            sql_vcategory_id = "SELECT vcategory_id FROM vcategory WHERE vcategory_name='%s'"
             my_cursor.execute(sql_vcategory_id %(vcategory_name))
             vcategory_id = my_cursor.fetchone()
             my_cursor.close()
