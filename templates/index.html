@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+    <link rel="stylesheet" href="./style.css">
+    <title>{% block title %} Elearning {% endblock %}</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+  </head>
+  <body>
+
+    <div class="main-nav">
+        <div class="logo"></div>
+        <ul class="nav-links">
+            <li><a class="nav-a" href="{{ url_for('get_video')}}">Home</a></li>
+            <li><a class="nav-a" href="#">About</a></li>
+       </ul>
+       <div id="burger" class="burger">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+       </div>
+    </div>
+
+    <div class="search">
+        <input type="search" name="find" id="search_id" placeholder="rechercher des vidéos">
+        <button>Search</button>        
+    </div>
+
+    <div class="ctn-main">
+        {% for item in video %}
+        <div class="div-video">        
+            <iframe src="{{ item['video_link']}}" ></iframe>
+            <a href="#" ><h6>{{ item['video_name'] }}</h6></a>
+        </div>
+        {% endfor %}       
+    </div>
+  
+</body>
+</html>

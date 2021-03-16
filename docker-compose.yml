@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  db:
+    container_name: dbpostgres
+    image: postgres
+    env_file: .env
+    networks: 
+      - netbd
+  
+  flask_app:
+    container_name: flask_video
+    build: ./app
+    depends_on: 
+      - db   
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    networks:
+      - netbd
+    command: sh -c "python main.py"
+
+networks: 
+  netbd: {}
