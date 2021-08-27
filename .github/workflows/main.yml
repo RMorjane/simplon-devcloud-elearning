@@ -11,4 +11,4 @@ jobs:
       run: docker-compose -f ../../docker-compose.yml
       
     - name: test
-      run: sh -c "python ../../test_elearning.py"
+      run: sh -c "python ./test_elearning.py"
