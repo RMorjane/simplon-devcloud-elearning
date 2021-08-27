@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: docker compose build
-      run: docker-compose up --build
+    - name: build
+      run: docker-compose -f ../../docker-compose.yml
 
     - name: test
       run: python test_elearning.py
