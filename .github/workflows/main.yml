@@ -9,9 +9,3 @@ jobs:
     steps:
     - name: build
       run: docker-compose -f ../../docker-compose.yml
-
-    - name: Test with pytest
-      run: |
-        pip install pytest
-        pip install pytest-cov
-        pytest test_elearning.py
