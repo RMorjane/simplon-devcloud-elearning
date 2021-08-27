@@ -4,7 +4,7 @@ on: [pull_request, issues]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: windows-latest
 
     steps:
     - name: build
