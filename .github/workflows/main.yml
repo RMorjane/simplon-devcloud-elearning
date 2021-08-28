@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: simplon-devcloud-elearning@main
+    - uses: github.com/RMorjane/simplon-devcloud-elearning.git@main
     - name: docker compose build
       run: docker-compose up --build
 
