@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: simplon-devcloud-elearning/wait-action@main
+    - uses: simplon-devcloud-elearning@main
     - name: docker compose build
       run: docker-compose up --build
 
