@@ -4,8 +4,11 @@ on: [pull_request, issues]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: build
-      run: "python main.py"
+    - name: docker compose build
+      run: docker-compose up --build
+
+    - name: test
+      run: python3 test_elearning.py
