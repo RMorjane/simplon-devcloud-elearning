@@ -7,9 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      POSTGRES_USER: ${{keys.POSTGRES_USER}}
-      POSTGRES_PASSWORD: ${{keys.POSTGRES_PASSWORD}}
-      POSTGRES_DB: ${{keys.POSTGRES_DB}}
+      POSTGRES_USER: ${{secrets.keys.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{secrets.keys.POSTGRES_PASSWORD}}
+      POSTGRES_DB: ${{secrets.keys.POSTGRES_DB}}
 
     steps:
     - uses: actions/checkout@main
