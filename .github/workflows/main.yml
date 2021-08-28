@@ -8,4 +8,4 @@ jobs:
 
     steps:
     - name: build
-      run: docker-compose -f ../../docker-compose.yml
+      run: "python main.py"
