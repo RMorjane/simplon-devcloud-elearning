@@ -15,4 +15,7 @@ jobs:
     - uses: actions/checkout@main
     
     - name: test
-      run: pip install psycopg2 && python test_elearning.py
+      run: pip install psycopg2 \
+          && docker start dbpostgres \
+          && docker exec -it dbpostgres \
+          && python test_elearning.py
