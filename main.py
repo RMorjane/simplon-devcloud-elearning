@@ -7,6 +7,7 @@ logging.basicConfig(filename='logs.log',level=logging.DEBUG)
 
 learning = MyElearning()
 learning.set_logger()
+learning.connect()
 
 app = Flask(__name__)
 
@@ -35,5 +36,4 @@ def video_page(video_id):
     return render_template("see_video.html", video = a, video_all = b)
 
 if __name__ == "__main__":
-    if learning.connect() and learning.create_tables():
-        app.run(host="0.0.0.0",port=3000, debug=True)
+    app.run(host="0.0.0.0",port=3000, debug=True)
