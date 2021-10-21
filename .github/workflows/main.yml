@@ -12,6 +12,7 @@ jobs:
       POSTGRES_DB: ${{secrets.POSTGRES_DB}}
 
     steps:
+    
     - uses: actions/checkout@main
     
     - name: build app
